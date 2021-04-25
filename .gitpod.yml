@@ -3,3 +3,5 @@ vscode:
   extensions:
     - muhammad-sammy.csharp
     - ionide.ionide-fsharp
+tasks:
+  - init: dotnet tool restore && dotnet restore
