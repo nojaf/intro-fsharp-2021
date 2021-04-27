@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Include="01-Basics.fs" />
     <Compile Include="02-Tuples.fs" />
+    <Compile Include="03-Records.fs" />
+    <Compile Include="04-DescriminatedUnions.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />

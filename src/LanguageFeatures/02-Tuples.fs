@@ -29,9 +29,12 @@ let ``C# interop and tuples`` () =
     // Tuple members are separated with `,`.
     // Coming from C# this can appear very confusing.
     // String.Split take a tuple as argument in this case
-    let pieces = "Penny Lane".Split([| " " |], StringSplitOptions.RemoveEmptyEntries)
+    let pieces =
+        "Penny Lane"
+            .Split([| " " |], StringSplitOptions.RemoveEmptyEntries)
+
     Assert.Equal("Penny", pieces.[0])
 
 type Album = (string * int) // We can alias a tuple definition in F#.
-let someAlbum: Album = ("A Hard Day's Night", 1964) // The : Album is not necessary in this case
+let someAlbum : Album = ("A Hard Day's Night", 1964) // The : Album is not necessary in this case
 // Notice that for tuple definitions we use *, but for assignment we use ,
