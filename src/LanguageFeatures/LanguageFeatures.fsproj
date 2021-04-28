@@ -11,6 +11,7 @@
     <Compile Include="04-DescriminatedUnions.fs" />
     <Compile Include="05-ActivePatterns.fs" />
     <Compile Include="06-Operators.fs" />
+    <Compile Include="07-ArrayListSeq.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
