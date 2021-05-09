@@ -9,8 +9,11 @@ open Xunit
 Collections are heavily used in F#.
 Lists being the most prominent one.
 ref: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/lists#module-functions
+api ref: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html
 ref: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/arrays
+api ref: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-arraymodule.html
 ref: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/sequences
+api ref: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html
 
 *)
 

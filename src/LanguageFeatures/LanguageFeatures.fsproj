@@ -3,6 +3,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <IsPackable>false</IsPackable>
     <GenerateProgramFile>false</GenerateProgramFile>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="01-Basics.fs" />
@@ -12,6 +13,8 @@
     <Compile Include="05-ActivePatterns.fs" />
     <Compile Include="06-Operators.fs" />
     <Compile Include="07-ArrayListSeq.fs" />
+    <Compile Include="08-PartialApplication.fs" />
+    <Compile Include="09-FormattedPrinting.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
