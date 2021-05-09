@@ -39,16 +39,16 @@ let ``print fallback`` () =
     // TODO: update string format
     let dump a = sprintf "All: "
 
-    Assert.Equal("All: [1; 2; 3]", dump [1;2;3])
+    Assert.Equal("All: [1; 2; 3]", dump [ 1; 2; 3 ])
     Assert.Equal("All: 7.28", dump 7.28)
-    Assert.Equal("All: System.Object", dump (obj()))
+    Assert.Equal("All: System.Object", dump (obj ()))
 
 [<Fact>]
 let ``print dates`` () =
     // TODO: update string format
     let printDate d = sprintf ""
 
-    Assert.Equal("2001-10-17", printDate (DateTime(2001,10,17)))
+    Assert.Equal("2001-10-17", printDate (DateTime(2001, 10, 17)))
 
 // In F# 5, you can also interpolated strings.
 // https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/interpolated-strings

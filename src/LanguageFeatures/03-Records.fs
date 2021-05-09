@@ -26,6 +26,7 @@ let ``update a record`` () =
     // In fact the `;` in F# indicates as a newline in certain scenario's. More on that when we get to lists.
 
     let correctedRecord = record // TODO: update the ReleaseYear to 2000
+
     Assert.Equal(2000, correctedRecord.ReleaseYear)
 
 type Artist =
