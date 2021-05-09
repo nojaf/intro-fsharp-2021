@@ -46,7 +46,6 @@ let ``unions types`` () =
     // try and extract the price again, create a helper function outside this unit test to get the price of any given SoftwareDevelopmentPurchase
 
     let fixedPrice = getPrice fixedPriceProject
-
     Assert.Equal(Money(10000.), fixedPrice)
 
     let agileProject =

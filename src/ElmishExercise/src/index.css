@@ -1,0 +1,35 @@
+html,
+body {
+    font-size: 16px;
+}
+
+.main-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1.5rem;
+}
+
+input {
+    padding: .25rem;
+    font-size: 16px;
+    width: 250px;
+    margin-bottom: 1rem;
+}
+
+button[type=submit] {
+  float: right;
+}
+
+form div {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 15px;
+}
+
+form div label {
+  min-width: 100px;
+}

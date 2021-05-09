@@ -5,3 +5,6 @@ vscode:
     - ionide.ionide-fsharp
 tasks:
   - command: dotnet tool restore && dotnet restore
+ports:
+  - port: 8080
+    onOpen: open-browser

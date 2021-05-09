@@ -9,7 +9,7 @@
       ]
     },
     "fantomas-tool": {
-      "version": "4.5.0-alpha-015",
+      "version": "4.5.0-alpha-016",
       "commands": [
         "fantomas"
       ]
@@ -18,6 +18,12 @@
       "version": "0.18.1",
       "commands": [
         "dotnet-fsharplint"
+      ]
+    },
+    "fable": {
+      "version": "3.1.15",
+      "commands": [
+        "fable"
       ]
     }
   }
