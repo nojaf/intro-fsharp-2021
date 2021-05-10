@@ -1,6 +1,14 @@
-# New Project
+# Elmish Exercise
 
 > ✨ Bootstrapped with Create Snowpack App (CSA).
+
+Install all node_modules first via
+
+> npm install
+
+Make sure Fable is installed as well.
+
+> dotnet tool restore
 
 ## Available Scripts
 

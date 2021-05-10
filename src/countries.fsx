@@ -53,8 +53,6 @@ CREATE TABLE IF NOT EXISTS countries (
     conn.Dispose()
     printfn "database schema created!"
 
-initializeDatabase ()
-
 let deleteAllCountries () =
     let conn = context.CreateConnection()
     conn.Open()
@@ -63,8 +61,6 @@ let deleteAllCountries () =
     cmd.ExecuteNonQuery() |> ignore
     conn.Dispose()
     printfn "all countries were deleted"
-
-deleteAllCountries ()
 
 let syncCountries () =
     countriesFromWeb
@@ -75,8 +71,6 @@ let syncCountries () =
             countryRow.Iso03266a2 <- country.Alpha2Code)
     |> fun _ -> context.SubmitUpdates()
 
-syncCountries ()
-
 let countriesStartWith (letter: char) =
     query {
         for country in context.Public.Countries do
@@ -85,4 +79,7 @@ let countriesStartWith (letter: char) =
     }
     |> Seq.toArray
 
-countriesStartWith 'E'
+initializeDatabase ()
+deleteAllCountries ()
+syncCountries ()
+countriesStartWith 'B'

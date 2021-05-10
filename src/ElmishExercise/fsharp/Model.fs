@@ -10,5 +10,5 @@ type Model =
 type Msg =
     | UpdateUser of string
     | UpdateEmail of string
-    | UpdatePassword
+    | UpdatePassword of string
     | FormSubmit
