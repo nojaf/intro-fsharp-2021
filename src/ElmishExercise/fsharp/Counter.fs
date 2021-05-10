@@ -3,8 +3,6 @@ module ElmishExercise.Counter
 open Fable.React
 open Fable.React.Props
 open Elmish
-open Feliz
-open Feliz.UseElmish
 
 // MODEL
 
@@ -41,9 +39,8 @@ let view (model: Model) (dispatch: Msg -> unit) : ReactElement =
         ]
     ]
 
-[<ReactComponent>]
-let Counter () =
-    let model, dispatch =
-        React.useElmish ((init (), Cmd.none), (fun msg model -> update msg model, Cmd.none), [||])
+open Elmish.React
 
-    view model dispatch
+Program.mkSimple init update view
+|> Program.withReactBatched "root"
+|> Program.run

@@ -1,8 +1,6 @@
 ﻿module ElmishExercise.App
 
-open Feliz
 open Elmish
-open Feliz.UseElmish
 open ElmishExercise
 
 (*
@@ -13,17 +11,8 @@ open ElmishExercise
         - password should have a capital letter, a number and be 8 chars long
 *)
 
-[<ReactComponent>]
-let App () =
-    let model, dispatch =
-        // In a true Elm application there is also the notion of Commands.
-        // See: https://elmish.github.io/elmish/#Commands
-        // We are not using this functionality here, so we are wrapping the functions
-        // to not have to deal with that.
-        React.useElmish (
-            (fun () -> (State.init (), Cmd.none)),
-            (fun msg model -> State.update msg model, Cmd.none),
-            [||]
-        )
+open Elmish.React
 
-    View.view model dispatch
+Program.mkSimple State.init State.update View.view
+|> Program.withReactBatched "root"
+|> Program.run

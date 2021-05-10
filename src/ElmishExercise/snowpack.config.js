@@ -5,8 +5,6 @@ module.exports = {
     src: { url: '/dist' },
   },
   plugins: [
-    '@snowpack/plugin-react-refresh',
-    '@snowpack/plugin-dotenv',
     ["@snowpack/plugin-run-script", {
       "cmd": "echo 'Fable already built'",
       "watch": "dotnet fable watch ./fsharp/ElmishExercise.fsproj --outDir ./src/bin"
