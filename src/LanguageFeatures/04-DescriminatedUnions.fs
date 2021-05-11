@@ -58,7 +58,7 @@ let ``unions types`` () =
 
     let agilePrice = getPrice agileProject
 
-    Assert.Equal(Money(200000.), agilePrice)
+    Assert.Equal(Money(20000.), agilePrice)
 
     let existingProduct = ExistingProduct(Money(37000.))
     let existingProductPrice = getPrice existingProduct
