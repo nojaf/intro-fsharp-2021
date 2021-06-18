@@ -25,7 +25,7 @@ let ``#3.2, update a record`` () =
     let record = { Name = "1"; ReleaseYear = 2001 } // notice how the member can be put on a single line if you separate them with a `;`.
     // In fact the `;` in F# indicates as a newline in certain scenario's. More on that when we get to lists.
 
-    let correctedRecord = record // TODO: update the ReleaseYear to 2000
+    let correctedRecord = { record with ReleaseYear = 2000 } // TODO: update the ReleaseYear to 2000
     Assert.Equal(2000, correctedRecord.ReleaseYear)
 
 type Artist =
@@ -35,7 +35,7 @@ type Artist =
     // Records can also have members.
     // The this word is an identifier that represents the instance.
     // You could have also chosen banana as identifier.
-    member this.FullName = "TODO: combine both names"
+    member this.FullName = this.FirstName + " " + this.LastName
 
 [<Fact>]
 let ``#3.3, call member on record instance`` () =

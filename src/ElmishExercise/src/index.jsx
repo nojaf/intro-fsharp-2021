@@ -1,3 +1,2 @@
-// import './bin/App';
-import './bin/Counter';
+import './bin/App';
 import './index.css';

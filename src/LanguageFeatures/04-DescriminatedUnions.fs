@@ -34,7 +34,15 @@ let ``#4.1, unions types`` () =
         // After each sprint the velocity of story points will be delivered.
         // So, first you need to figure out how many sprint will be necessary to complete the total amount of story points.
 
-        failwith<double> "TODO" // TODO complete!
+        match p with
+        | SoftwareDevelopmentPurchase.FixedPrice (p, _, _) -> p
+        | SoftwareDevelopmentPurchase.ExistingProduct p -> p
+        | SoftwareDevelopmentPurchase.Agile (metric, totalDays) ->
+            let sprintsNeeded =
+                Math.Ceiling(double totalDays / double metric.Velocity)
+
+            metric.CostPerSprint * sprintsNeeded
+
 
     let fixedPriceProject : SoftwareDevelopmentPurchase =
         SoftwareDevelopmentPurchase.FixedPrice(10000., DateTime(1997, 10, 2), DateTime(1998, 2, 7)) // notice that we don't need the `new` keyword when creating those dates.
@@ -65,10 +73,18 @@ let ``#4.2, delivery date`` () =
     // Tip, you can subtract two Dates in .NET and retrieve a TimeSpan:
     // ref: https://docs.microsoft.com/en-us/dotnet/api/system.datetime.subtract?view=net-5.0
     // https://docs.microsoft.com/en-us/dotnet/api/system.timespan.totaldays?view=net-5.0
-    let getDuration (p: SoftwareDevelopmentPurchase) : int = failwith<int> "TODO" // TODO complete
+    let getDuration (p: SoftwareDevelopmentPurchase) : int =
+        match p with
+        | SoftwareDevelopmentPurchase.FixedPrice (_, s, e) -> int (e - s).TotalDays
+        | SoftwareDevelopmentPurchase.ExistingProduct _ -> 0
+        | SoftwareDevelopmentPurchase.Agile (m, ts) ->
+            let sprintsNeeded =
+                Math.Ceiling(double ts / double m.Velocity)
+
+            int sprintsNeeded * m.Duration
 
     let fixedPriceProject =
-        FixedPrice(double (10000.), DateTime(1997, 10, 2), DateTime(1998, 2, 7))
+        FixedPrice(10000., DateTime(1997, 10, 2), DateTime(1998, 2, 7))
 
     let agileProject =
         Agile(
@@ -94,8 +110,15 @@ let ``#4.3, popular sum type`` () =
     let ok = Ok "Ringo"
     let error = Error "something went wrong"
 
-    let optionToString o = "todo"
-    let resultToString r = "todo"
+    let optionToString =
+        function
+        | Some s -> string s
+        | None -> "None"
+
+    let resultToString =
+        function
+        | Ok ok -> ok
+        | Error e -> e
 
     Assert.Equal("6", optionToString some6)
     Assert.Equal("None", optionToString none)

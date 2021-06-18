@@ -20,7 +20,7 @@ api ref: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-
 [<Fact>]
 let ``#7.1, first item of the list`` () =
     let numbers = [ 0; 1; 2; 3 ]
-    let head = Int32.MaxValue // TODO replace with the first element of the list
+    let head = List.head numbers // TODO replace with the first element of the list
     Assert.Equal(0, head)
 
 [<Fact>]
@@ -28,7 +28,10 @@ let ``#7.2, first item of the list, safely`` () =
     let letters = [ 'a'; 'b'; 'c'; 'd' ]
     let otherLetters = []
 
-    let firstLetterAsCapital letters = String.Empty // TODO: complete function
+    let firstLetterAsCapital letters =
+        match letters with
+        | [] -> "?"
+        | h :: _ -> h.ToString().ToUpper()
 
     Assert.Equal("A", firstLetterAsCapital letters)
     Assert.Equal("?", firstLetterAsCapital otherLetters)
@@ -42,7 +45,9 @@ let ``#7.3, map dates to string`` () =
     // TODO: map the dates to the correct string format
     // Date formats in .NET : https://docs.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings
     // Hint: you might need CultureInfo.InvariantCulture
-    let datesAsString : string list = []
+    let datesAsString : string list =
+        dates
+        |> List.map (fun (d: DateTime) -> d.ToString("dddd MMMM yyyy", CultureInfo.InvariantCulture))
 
     Assert.Equal<string list>(
         [ "Thursday April 1997"
@@ -56,7 +61,8 @@ let ``#7.4, folding a list`` () =
     let sequence = [ 4; -8; 9; 17; -5 ]
     // TODO: combine the numbers of the sequence by adding up.
     // Add another extra 20 when the number is negative.
-    let result = 0
+    let result =
+        List.fold (fun acc n -> acc + (if n < 0 then n + 20 else n)) 0 sequence
 
     Assert.Equal(57, result)
 
@@ -64,7 +70,8 @@ let ``#7.4, folding a list`` () =
 let ``#7.5, filtering`` () =
     let letters = [ 'a' .. 'z' ] // creates a list from 'a' to 'z', pretty impressive right ;)
 
-    let filtered = [] // TODO filter the list so only the vowels remain.
+    let filtered =
+        List.filter (fun (c: char) -> "aeiouy".Contains(c)) letters // TODO filter the list so only the vowels remain.
 
     Assert.Equal<char list>([ 'a'; 'e'; 'i'; 'o'; 'u'; 'y' ], filtered)
 
@@ -80,7 +87,7 @@ let ``#7.6, filtering options`` () =
           Some 7
           None ]
 
-    let filtered = [] // TODO: filter the values list so only the number remain (as int, not as int option).
+    let filtered = List.choose id values // TODO: filter the values list so only the number remain (as int, not as int option).
 
     Assert.Equal<int list>([ 8; 9; 9; 7 ], filtered)
 
@@ -89,7 +96,10 @@ let ``#7.7, pattern matching lists`` () =
     // TODO: create a recursive function that sums up all elements of list
     // Don't use any List module functions!
     // ref: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/functions/recursive-functions-the-rec-keyword
-    let rec sumOfList current list = 0
+    let rec sumOfList current list =
+        match list with
+        | [] -> current
+        | h :: rest -> sumOfList (current + h) rest
 
     Assert.Equal(0, sumOfList 0 [])
     Assert.Equal(4, sumOfList 0 [ 4 ])
@@ -171,7 +181,13 @@ Na, na, na, na-na-na na
 Na-na-na na, hey Jude
 """
 
-    let result = []
+    let result =
+        lyrics.Split([| " "; ","; "("; ")"; "\n"; "\r\n" |], StringSplitOptions.RemoveEmptyEntries)
+        |> Array.groupBy id
+        |> Array.sortByDescending (fun (_, g) -> g.Length)
+        |> Array.take 10
+        |> Array.map fst
+        |> Array.toList
     // TODO: create a list of the top ten words that occur the most in the lyric above.
     // Tip: Split `lyrics` on every non-word character like spaces, newlines, parenthesis and commas.
 

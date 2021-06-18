@@ -44,7 +44,7 @@ make sure you are in the LanguageFeatures folder!
 [<Fact>]
 let ``#1.1, a first unit test to get things started`` () =
     let a = true // without telling the compiler it can infer that a is a boolean. Because the keyword true and false can only be interpreted as boolean.
-    let b = false
+    let b = true
 
     Assert.Equal(a, b) // We can use Assert.Equal from the xUnit namespace because of the `open` statement above.
 
@@ -59,7 +59,7 @@ let ``#1.2, simple if / else structure`` () =
             "a was false"
     // b was also inferred as string so the .Length function is available.
     let length = b.Length
-    Assert.Equal(11, length)
+    Assert.Equal(10, length)
 
 [<Fact>]
 let ``#1.3, the mutable keyword`` () =
@@ -103,6 +103,8 @@ let ``#1.4, if / else if / elif / else`` () =
 
     // TODO: iterate over the numbers array to assign each matching value to the fizzBuzz array
     // Keep in mind that in F# arrays are zero based!
+    for n in numbers do
+        fizzBuzz.[n - 1] <- parseNumber n
 
     let firstFizz = fizzBuzz.[2]
     let firstBuzz = fizzBuzz.[4]
@@ -119,6 +121,8 @@ let ``#1.5, while loops`` () =
 
     // TODO: write a while loop that increase by 1 a until it becomes 10.
     // ref: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/loops-while-do-expression
+    while a < 10 do
+        a <- a + 1
 
     Assert.Equal(10, a)
 
@@ -129,7 +133,7 @@ let ``#1.6, first lambda`` () =
     // TODO: complete the lambda so that the value is returned in uppercase.
     // string is an alias for System.String, https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/strings
     // The string class always has a lot of helper methods out of the box, see https://docs.microsoft.com/en-us/dotnet/api/system.string?view=net-5.0#methods
-    let toUpperCase = fun (a: string) -> a
+    let toUpperCase = fun (a: string) -> a.ToUpper()
     // ref: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/functions/lambda-expressions-the-fun-keyword
 
     let name = "Joey"

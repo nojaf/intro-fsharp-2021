@@ -22,14 +22,14 @@ let ``#9.1, A gentle string`` () =
 [<Fact>]
 let ``#9.2, integers`` () =
     // TODO: update the string so the value i can be passed as an argument
-    let printInt i = sprintf "The value is "
+    let printInt i = sprintf "The value is %i" i
 
     Assert.Equal("The value is 7", printInt 7)
 
 [<Fact>]
 let ``#9.3, money`` () =
     // TODO: update string format
-    let printCurrency euros = sprintf "€"
+    let printCurrency euros = sprintf "€%0.2f" euros
 
     Assert.Equal("€0.02", printCurrency 0.02)
     Assert.Equal("€17.00", printCurrency 17.)
@@ -37,7 +37,7 @@ let ``#9.3, money`` () =
 [<Fact>]
 let ``#9.4, print fallback`` () =
     // TODO: update string format
-    let dump a = sprintf "All: "
+    let dump a = sprintf "All: %A" a
 
     Assert.Equal("All: [1; 2; 3]", dump [ 1; 2; 3 ])
     Assert.Equal("All: 7.28", dump 7.28)
@@ -46,7 +46,7 @@ let ``#9.4, print fallback`` () =
 [<Fact>]
 let ``#9.5, print dates`` () =
     // TODO: update string format
-    let printDate d = sprintf ""
+    let printDate (d: DateTime) = d.ToString "yyyy-MM-dd"
 
     Assert.Equal("2001-10-17", printDate (DateTime(2001, 10, 17)))
 

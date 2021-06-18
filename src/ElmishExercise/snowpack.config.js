@@ -23,7 +23,7 @@ module.exports = {
   },
   devOptions: {
     output: "stream",
-    hmrPort: 443
+   // hmrPort: 443
   },
   buildOptions: {
     /* ... */

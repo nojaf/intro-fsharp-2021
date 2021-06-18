@@ -10,8 +10,8 @@ let ``#2.1, a simple tuple`` () =
     let myTuple = ("John", 77)
     // TODO: replace the values below by the respective values from the tuple.
     // Don't use destructing, keep myTuple as is.
-    let firstPart = failwith "TODO: implement!" // `failwith` generates an F# exception, https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/exception-handling/the-failwith-function
-    let secondPart = failwith "TODO: implement!" // We want the test to fail at first as there is no implementation provided.
+    let firstPart = fst myTuple // `failwith` generates an F# exception, https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/exception-handling/the-failwith-function
+    let secondPart = snd myTuple // We want the test to fail at first as there is no implementation provided.
 
     Assert.Equal("John", firstPart)
     Assert.Equal(77, secondPart)
@@ -21,7 +21,7 @@ let ``#2.2, ignoring parts of a tuple`` () =
     // In this sample `year` is not being used.
     // F# tooling should give you a visual clue or a warning about this.
     // TODO: get rid of the warning without changing the right part.
-    let name, year = ("Strawberry Fields", 1976)
+    let name, _ = ("Strawberry Fields", 1976)
     Assert.Equal("Strawberry Fields", name)
 
 [<Fact>]

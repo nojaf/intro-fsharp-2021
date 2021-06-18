@@ -24,7 +24,10 @@ let ``#5.1, fizzbuzz with active patterns`` () =
     let processNumber (n: int) : string =
         // TODO: match the newly created active pattern
         match n with
-        | _ -> ""
+        | Fizz -> "fizz"
+        | Buzz -> "buzz"
+        | FizzBuzz -> "fizzbuzz"
+        | _ -> string n
 
     let result = Array.map processNumber numbers
 
@@ -37,7 +40,10 @@ let ``#5.1, fizzbuzz with active patterns`` () =
 let ``#5.2, non empty list`` () =
     // TODO: implement the follow partial active pattern
     // Return `Some items` when the list is not empty
-    let (|NonEmptyList|_|) (items: 't list) = failwith "not implemented"
+    let (|NonEmptyList|_|) (items: 't list) =
+        match items with
+        | [] -> None
+        | _ -> Some items
 
     let values = [ 1; 2; 4; 8 ]
 

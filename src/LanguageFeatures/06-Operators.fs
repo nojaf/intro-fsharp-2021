@@ -48,11 +48,13 @@ let ``#6.3, custom operator`` () =
     // ref: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/operator-overloading#creating-new-operators
     let a = 7
     let b = 2
-    let result = a + b // TODO use custom operator instead of +
+    let (/+/) a b = a + b + 1
+    let result = a /+/ b // TODO use custom operator instead of +
     Assert.Equal(10, result)
 
 [<Fact>]
 let ``#6.4, assert operator`` () =
     let a = 5
+    let (==) (e: 't) (a: 't) = Assert.Equal<'t>(e, a)
     // TODO: create an custom operator ==, that will execute Assert.Equal on two values.
-    Assert.Equal(5, a)
+    5 == a
