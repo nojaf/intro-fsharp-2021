@@ -40,6 +40,7 @@ let ``#7.3, map dates to string`` () =
           DateTime(2005, 7, 13)
           DateTime(2011, 5, 6) ]
     // TODO: map the dates to the correct string format
+    // Date formats in .NET : https://docs.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings
     // Hint: you might need CultureInfo.InvariantCulture
     let datesAsString : string list = []
 
@@ -61,33 +62,7 @@ let ``#7.4, folding a list`` () =
 
 [<Fact>]
 let ``#7.5, filtering`` () =
-    let letters =
-        [ 'a'
-          'b'
-          'c'
-          'd'
-          'e'
-          'f'
-          'g'
-          'h'
-          'i'
-          'j'
-          'k'
-          'l'
-          'm'
-          'n'
-          'o'
-          'p'
-          'q'
-          'r'
-          's'
-          't'
-          'u'
-          'v'
-          'w'
-          'x'
-          'y'
-          'z' ]
+    let letters = [ 'a' .. 'z' ] // creates a list from 'a' to 'z', pretty impressive right ;)
 
     let filtered = [] // TODO filter the list so only the vowels remain.
 
@@ -196,7 +171,9 @@ Na, na, na, na-na-na na
 Na-na-na na, hey Jude
 """
 
-    let result = [] // TODO: create a list of the top ten words that occur the most in the lyric above.
+    let result = []
+    // TODO: create a list of the top ten words that occur the most in the lyric above.
+    // Tip: Split `lyrics` on every non-word character like spaces, newlines, parenthesis and commas.
 
     Assert.Equal<string list>(
         [ "na"
