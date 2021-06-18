@@ -11,7 +11,7 @@ open System
 *)
 
 [<Fact>]
-let ``meeting the pipe operator`` () =
+let ``#6.1, meeting the pipe operator`` () =
     // The pipe operator allows us to pass an expression as last argument of the next function
     let dateToString (d: DateTime) = d.ToString("dddd")
     let toUpper (n: string) = n.ToUpper()
@@ -25,7 +25,7 @@ let ``meeting the pipe operator`` () =
     Assert.Equal(expected, todayButInCapitals)
 
 [<Fact>]
-let ``compose functions`` () =
+let ``#6.2, compose functions`` () =
     // When the result of a function is the input of another function, those functions can be combined to a new function.
     // F. ex:
 
@@ -43,7 +43,7 @@ let ``compose functions`` () =
     Assert.Equal(expected, actual)
 
 [<Fact>]
-let ``custom operator`` () =
+let ``#6.3, custom operator`` () =
     // TODO: create a new operator /+/ that counts a + b + 1
     // ref: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/operator-overloading#creating-new-operators
     let a = 7
@@ -52,7 +52,7 @@ let ``custom operator`` () =
     Assert.Equal(10, result)
 
 [<Fact>]
-let ``assert operator`` () =
+let ``#6.4, assert operator`` () =
     let a = 5
     // TODO: create an custom operator ==, that will execute Assert.Equal on two values.
     Assert.Equal(5, a)

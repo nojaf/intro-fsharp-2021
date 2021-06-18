@@ -6,7 +6,7 @@ open Xunit
 // Ah tuples, beautiful right...
 // ref: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/tuples
 [<Fact>]
-let ``a simple tuple`` () =
+let ``#2.1, a simple tuple`` () =
     let myTuple = ("John", 77)
     // TODO: replace the values below by the respective values from the tuple.
     // Don't use destructing, keep myTuple as is.
@@ -17,7 +17,7 @@ let ``a simple tuple`` () =
     Assert.Equal(77, secondPart)
 
 [<Fact>]
-let ``ignoring parts of a tuple`` () =
+let ``#2.2, ignoring parts of a tuple`` () =
     // In this sample `year` is not being used.
     // F# tooling should give you a visual clue or a warning about this.
     // TODO: get rid of the warning without changing the right part.
@@ -25,7 +25,7 @@ let ``ignoring parts of a tuple`` () =
     Assert.Equal("Strawberry Fields", name)
 
 [<Fact>]
-let ``C# interop and tuples`` () =
+let ``#2.3, C# interop and tuples`` () =
     // Tuple members are separated with `,`.
     // Coming from C# this can appear very confusing.
     // String.Split take a tuple as argument in this case

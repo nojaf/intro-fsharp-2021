@@ -37,14 +37,14 @@ ref: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/unit-type
 
 *)
 [<Fact>]
-let ``a first unit test to get things started`` () =
+let ``#1.1, a first unit test to get things started`` () =
     let a = true // without telling the compiler it can infer that a is a boolean. Because the keyword true and false can only be interpreted as boolean.
     let b = false
 
     Assert.Equal(a, b) // We can use Assert.Equal from the xUnit namespace because of the `open` statement above.
 
 [<Fact>]
-let ``simple if / else structure`` () =
+let ``#1.2, simple if / else structure`` () =
     let a = true
     // Notice how the declaration of value b can be a multiple line expression.
     let b =
@@ -57,7 +57,7 @@ let ``simple if / else structure`` () =
     Assert.Equal(11, length)
 
 [<Fact>]
-let ``if / else if / elif / else`` () =
+let ``#1.3, if / else if / elif / else`` () =
     let numbers = [| 1 .. 100 |] // creates an array with elements from 1 to 100 (boundaries inclusive).
 
     // This is an inner function, scoped to the current test.
@@ -92,7 +92,7 @@ let ``if / else if / elif / else`` () =
     Assert.Equal("FizzBuzz", firstFizzBuzz)
 
 [<Fact>]
-let ``the mutable keyword`` () =
+let ``#1.4, the mutable keyword`` () =
     // F# is not a pure strict functional language
     // Since there is interopt with C# you can mutable variables by using the `mutable` keyword.
     // Avoid this at all time ;)
@@ -104,7 +104,7 @@ let ``the mutable keyword`` () =
     Assert.Equal(2, two)
 
 [<Fact>]
-let ``while loops`` () =
+let ``#1.5, while loops`` () =
     // Uncommon in F# but you can use while loops
     let mutable a = 0
 
@@ -114,7 +114,7 @@ let ``while loops`` () =
     Assert.Equal(10, a)
 
 [<Fact>]
-let ``first lambda`` () =
+let ``#1.6, first lambda`` () =
     // You can use the `fun` keyword to write lambda's.
     // Mind the -> instead of C#'s =>
     // TODO: complete the lambda so that the value is returned in uppercase.
@@ -122,5 +122,5 @@ let ``first lambda`` () =
     // ref: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/functions/lambda-expressions-the-fun-keyword
 
     let name = "Joey"
-    let uppercased = toUpperCase name
-    Assert.Equal("JOEY", uppercased)
+    let upperCased = toUpperCase name
+    Assert.Equal("JOEY", upperCased)

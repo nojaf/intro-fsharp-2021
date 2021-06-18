@@ -28,18 +28,18 @@ type SoftwareDevelopmentPurchase =
     | ExistingProduct of Money
 
 [<Fact>]
-let ``single case discriminated unions`` () =
+let ``#4.1, single case discriminated unions`` () =
     let tenDays = Days 10 // notice that the primitive value 10 is being wrapped by our Days type
     // This helps us and the compiler to distinguish what a value really means.
-    let (Days (d)) = tenDays // destructure of get the actual value
+    let (Days d) = tenDays // destructure of get the actual value
     Assert.Equal(10, d)
 
 // hint: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/pattern-matching#identifier-patterns
-let getPrice p : Money = Money 0. // TODO complete!
-let getDuration p : Days = Days 0 // TODO complete
+let getPrice (p: SoftwareDevelopmentPurchase) : Money = Money 0. // TODO complete!
+let getDuration (p: SoftwareDevelopmentPurchase) : Days = Days 0 // TODO complete
 
 [<Fact>]
-let ``unions types`` () =
+let ``#4.2, unions types`` () =
     let fixedPriceProject =
         SoftwareDevelopmentPurchase.FixedPrice(Money(10000.), DateTime(1997, 10, 2), DateTime(1998, 2, 7)) // notice that we don't need the `new` keyword when creating those dates.
     // fixedPrice is now of type SoftwareDevelopmentPurchase.
@@ -66,7 +66,7 @@ let ``unions types`` () =
     Assert.Equal(Money(37000.), existingProductPrice)
 
 [<Fact>]
-let ``delivery date`` () =
+let ``#4.3, delivery date`` () =
     let fixedPriceProject =
         FixedPrice(Money(10000.), DateTime(1997, 10, 2), DateTime(1998, 2, 7))
 
@@ -85,7 +85,7 @@ let ``delivery date`` () =
     Assert.Equal(Days(0), getDuration existingProduct)
 
 [<Fact>]
-let ``popular sum type`` () =
+let ``#4.4, popular sum type`` () =
     // Option and Result are built in type into FSharp.Core.
     // ref: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/options
     // ref: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/results

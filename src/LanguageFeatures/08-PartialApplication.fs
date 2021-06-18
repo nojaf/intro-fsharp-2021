@@ -11,7 +11,7 @@ see: https://fsharpforfunandprofit.com/posts/partial-application/
 *)
 
 [<Fact>]
-let ``classic example`` () =
+let ``#8.1, classic example`` () =
     let add a b = a + b
     let add50 = add 50
 

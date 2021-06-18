@@ -18,13 +18,13 @@ api ref: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-
 *)
 
 [<Fact>]
-let ``first item of the list`` () =
+let ``#7.1, first item of the list`` () =
     let numbers = [ 0; 1; 2; 3 ]
     let head = Int32.MaxValue // TODO replace with the first element of the list
     Assert.Equal(0, head)
 
 [<Fact>]
-let ``first item of the list, safely`` () =
+let ``#7.2, first item of the list, safely`` () =
     let letters = [ 'a'; 'b'; 'c'; 'd' ]
     let otherLetters = []
 
@@ -34,7 +34,7 @@ let ``first item of the list, safely`` () =
     Assert.Equal("?", firstLetterAsCapital otherLetters)
 
 [<Fact>]
-let ``map dates to string`` () =
+let ``#7.3, map dates to string`` () =
     let dates =
         [ DateTime(1997, 4, 17)
           DateTime(2005, 7, 13)
@@ -51,7 +51,7 @@ let ``map dates to string`` () =
     )
 
 [<Fact>]
-let ``folding a list`` () =
+let ``#7.4, folding a list`` () =
     let sequence = [ 4; -8; 9; 17; -5 ]
     // TODO: combine the numbers of the sequence by adding up.
     // Add another extra 20 when the number is negative.
@@ -60,7 +60,7 @@ let ``folding a list`` () =
     Assert.Equal(57, result)
 
 [<Fact>]
-let ``filtering`` () =
+let ``#7.5, filtering`` () =
     let letters =
         [ 'a'
           'b'
@@ -94,7 +94,7 @@ let ``filtering`` () =
     Assert.Equal<char list>([ 'a'; 'e'; 'i'; 'o'; 'u'; 'y' ], filtered)
 
 [<Fact>]
-let ``filtering options`` () =
+let ``#7.6, filtering options`` () =
     let values =
         [ Some 8
           None
@@ -110,7 +110,7 @@ let ``filtering options`` () =
     Assert.Equal<int list>([ 8; 9; 9; 7 ], filtered)
 
 [<Fact>]
-let ``pattern matching lists`` () =
+let ``#7.7, pattern matching lists`` () =
     // TODO: create a recursive function that sums up all elements of list
     // Don't use any List module functions!
     // ref: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/functions/recursive-functions-the-rec-keyword
@@ -122,7 +122,7 @@ let ``pattern matching lists`` () =
     Assert.Equal(13, sumOfList 0 [ 6; 6; 1 ])
 
 [<Fact>]
-let ``piping lists`` () =
+let ``#7.8, piping lists`` () =
     let lyrics =
         """
 Hey Jude, don't make it bad

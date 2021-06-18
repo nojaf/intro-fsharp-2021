@@ -11,7 +11,7 @@ open Xunit
 type Album = { Name: string; ReleaseYear: int }
 
 [<Fact>]
-let ``basic records`` () =
+let ``#3.1, basic records`` () =
     // The instance of a record looks pretty similar.
     // Try to remove on of the members, the compiler will prompt an error.
     let firstRecord =
@@ -21,7 +21,7 @@ let ``basic records`` () =
     Assert.Equal(1962, firstRecord.ReleaseYear)
 
 [<Fact>]
-let ``update a record`` () =
+let ``#3.2, update a record`` () =
     let record = { Name = "1"; ReleaseYear = 2001 } // notice how the member can be put on a single line if you separate them with a `;`.
     // In fact the `;` in F# indicates as a newline in certain scenario's. More on that when we get to lists.
 
@@ -38,7 +38,7 @@ type Artist =
     member this.FullName = "TODO: combine both names"
 
 [<Fact>]
-let ``call member on record instance`` () =
+let ``#3.3, call member on record instance`` () =
     let john =
         { FirstName = "John"
           LastName = "Lennon" }
@@ -48,7 +48,7 @@ let ``call member on record instance`` () =
 type Infant = { Name: string; Age: int }
 
 [<Fact>]
-let ``compare records`` () =
+let ``#3.4, compare records`` () =
     let infants =
         [ { Name = "Dexter"; Age = 6 }
           { Name = "Alex"; Age = 8 }
@@ -68,7 +68,7 @@ let ``compare records`` () =
     Assert.Equal("Alex", firstItem.Name)
 
 [<Fact>]
-let ``anonymous records`` () =
+let ``#3.5, anonymous records`` () =
     // Since F# 4.7 is possible to declare a record without first defining a type.
     // ref: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/anonymous-records
     let john =

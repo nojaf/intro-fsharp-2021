@@ -20,7 +20,12 @@ Run a single unit test from the command line:
 
 > cd src/LanguageFeatures
 
-> dotnet test --filter DisplayName~'if / else if'
+> dotnet test --filter DisplayName~#1.1
+
+Break down:
+- `dotnet` -> Main .NET cli executable.
+- `test` -> Test verb to run unit tests of .NET project (fsproj) located in the current working directory.
+- `--filter DisplayName~#1.1` -> Filter the unit tests where the display name contains (annotated by the `~`) the string `#1.1`.
 
 See https://docs.microsoft.com/en-us/dotnet/core/testing/selective-unit-tests?pivots=xunit
 

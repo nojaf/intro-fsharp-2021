@@ -13,21 +13,21 @@ see: https://fsharpforfunandprofit.com/posts/printf/
 *)
 
 [<Fact>]
-let ``A gentle string`` () =
+let ``#9.1, A gentle string`` () =
     let printName = sprintf "Greetings, my name is %s"
     let result = printName "John"
 
     Assert.Equal("Greetings, my name is John", result)
 
 [<Fact>]
-let ``integers`` () =
+let ``#9.2, integers`` () =
     // TODO: update the string so the value i can be passed as an argument
     let printInt i = sprintf "The value is "
 
     Assert.Equal("The value is 7", printInt 7)
 
 [<Fact>]
-let ``money`` () =
+let ``#9.3, money`` () =
     // TODO: update string format
     let printCurrency euros = sprintf "€"
 
@@ -35,7 +35,7 @@ let ``money`` () =
     Assert.Equal("€17.00", printCurrency 17)
 
 [<Fact>]
-let ``print fallback`` () =
+let ``#9.4, print fallback`` () =
     // TODO: update string format
     let dump a = sprintf "All: "
 
@@ -44,7 +44,7 @@ let ``print fallback`` () =
     Assert.Equal("All: System.Object", dump (obj ()))
 
 [<Fact>]
-let ``print dates`` () =
+let ``#9.5, print dates`` () =
     // TODO: update string format
     let printDate d = sprintf ""
 
@@ -54,7 +54,7 @@ let ``print dates`` () =
 // https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/interpolated-strings
 
 [<Fact>]
-let ``string interpolation`` () =
+let ``#9.6, string interpolation`` () =
     let n = 9
     let s = $"The number n is {n}"
     Assert.Equal("The number n is 9", s)
