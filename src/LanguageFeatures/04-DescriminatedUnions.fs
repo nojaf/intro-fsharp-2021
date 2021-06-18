@@ -9,83 +9,84 @@ open Xunit
     ref: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/discriminated-unions
 *)
 
-type Days = Days of int // you can alias types in F# to get a DDD kind of vibe.
-
-type StoryPoints = StoryPoints of int
-type Money = Money of double
-
 type SprintMetric =
-    { Velocity: StoryPoints
-      Duration: Days
-      CostPerSprint: Money }
+    { Velocity: int
+      Duration: int
+      CostPerSprint: double }
 
 // Notice that we need to define the type SprintMetric before we can use it later in SoftwareDevelopmentPurchase.
 // The order matters, you can't use anything in F# before it is defined.
 
 type SoftwareDevelopmentPurchase =
-    | FixedPrice of price: Money * start: DateTime * deadline: DateTime // We can assign labels (like price:) to union case members.
-    | Agile of SprintMetric * totalStoryPoints: StoryPoints
-    | ExistingProduct of Money
+    | FixedPrice of price: double * start: DateTime * deadline: DateTime // We can assign labels (like price:) to union case members.
+    | Agile of SprintMetric * totalStoryPoints: int
+    | ExistingProduct of double
 
 [<Fact>]
-let ``#4.1, single case discriminated unions`` () =
-    let tenDays = Days 10 // notice that the primitive value 10 is being wrapped by our Days type
-    // This helps us and the compiler to distinguish what a value really means.
-    let (Days d) = tenDays // destructure of get the actual value
-    Assert.Equal(10, d)
+let ``#4.1, unions types`` () =
+    // hint: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/pattern-matching#identifier-patterns
+    let getPrice (p: SoftwareDevelopmentPurchase) : double =
+        // The price of a purchase will be different for each union case.
+        // FixedPrice and ExistingProduct are easy to deduce.
 
-// hint: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/pattern-matching#identifier-patterns
-let getPrice (p: SoftwareDevelopmentPurchase) : Money = Money 0. // TODO complete!
-let getDuration (p: SoftwareDevelopmentPurchase) : Days = Days 0 // TODO complete
+        // Agile has a slightly more complex calculation: you know the total amount of story points that will be necessary to complete the project.
+        // You need to pay the scrum team for per sprint (each started sprint needs to be payed in full).
+        // After each sprint the velocity of story points will be delivered.
+        // So, first you need to figure out how many sprint will be necessary to complete the total amount of story points.
 
-[<Fact>]
-let ``#4.2, unions types`` () =
-    let fixedPriceProject =
-        SoftwareDevelopmentPurchase.FixedPrice(Money(10000.), DateTime(1997, 10, 2), DateTime(1998, 2, 7)) // notice that we don't need the `new` keyword when creating those dates.
-    // fixedPrice is now of type SoftwareDevelopmentPurchase.
-    // try and extract the price again, create a helper function outside this unit test to get the price of any given SoftwareDevelopmentPurchase
+        failwith<double> "TODO" // TODO complete!
+
+    let fixedPriceProject : SoftwareDevelopmentPurchase =
+        SoftwareDevelopmentPurchase.FixedPrice(10000., DateTime(1997, 10, 2), DateTime(1998, 2, 7)) // notice that we don't need the `new` keyword when creating those dates.
 
     let fixedPrice = getPrice fixedPriceProject
-    Assert.Equal(Money(10000.), fixedPrice)
+    Assert.Equal(10000., fixedPrice)
 
     let agileProject =
         Agile(
-            { Velocity = StoryPoints(20)
-              Duration = Days(10)
-              CostPerSprint = Money(5000.) },
-            StoryPoints(70)
+            { Velocity = 20
+              Duration = 10
+              CostPerSprint = 5000. },
+            70
         ) // Notice that we don't need to write SoftwareDevelopmentPurchase.Agile.
 
     let agilePrice = getPrice agileProject
 
-    Assert.Equal(Money(20000.), agilePrice)
+    Assert.Equal(20000., agilePrice)
 
-    let existingProduct = ExistingProduct(Money(37000.))
+    let existingProduct = ExistingProduct(37000.)
     let existingProductPrice = getPrice existingProduct
 
-    Assert.Equal(Money(37000.), existingProductPrice)
+    Assert.Equal(37000., existingProductPrice)
 
 [<Fact>]
-let ``#4.3, delivery date`` () =
+let ``#4.2, delivery date`` () =
+    // TODO: get the duration of each project in days
+    // Tip, you can subtract two Dates in .NET and retrieve a TimeSpan:
+    // ref: https://docs.microsoft.com/en-us/dotnet/api/system.datetime.subtract?view=net-5.0
+    // https://docs.microsoft.com/en-us/dotnet/api/system.timespan.totaldays?view=net-5.0
+    let getDuration (p: SoftwareDevelopmentPurchase) : int =
+        failwith<int> "TODO" // TODO complete
+
     let fixedPriceProject =
-        FixedPrice(Money(10000.), DateTime(1997, 10, 2), DateTime(1998, 2, 7))
+        FixedPrice(double (10000.), DateTime(1997, 10, 2), DateTime(1998, 2, 7))
 
     let agileProject =
         Agile(
-            { Velocity = StoryPoints(20)
-              Duration = Days(10)
-              CostPerSprint = Money(5000.) },
-            StoryPoints(70)
+            { Velocity = 20
+              Duration = 10
+              CostPerSprint = 5000. },
+            70
         )
 
-    let existingProduct = ExistingProduct(Money(37000.))
+    let existingProduct = ExistingProduct(37000.)
 
-    Assert.Equal(Days(128), getDuration fixedPriceProject)
-    Assert.Equal(Days(40), getDuration agileProject)
-    Assert.Equal(Days(0), getDuration existingProduct)
+    Assert.Equal(128, getDuration fixedPriceProject)
+    Assert.Equal(40, getDuration agileProject)
+    Assert.Equal(0, getDuration existingProduct)
 
 [<Fact>]
-let ``#4.4, popular sum type`` () =
+let ``#4.3, popular sum type`` () =
     // Option and Result are built in type into FSharp.Core.
     // ref: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/options
     // ref: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/results
@@ -103,3 +104,5 @@ let ``#4.4, popular sum type`` () =
     Assert.Equal("something went wrong", resultToString error)
 
 // Outside the scope of this training but Results are the basis for Railway Oriented programming: https://fsharpforfunandprofit.com/rop/
+// To wrap up this module, format all the files in the project by passing the path to a folder this time
+//      dotnet fantomas ./
