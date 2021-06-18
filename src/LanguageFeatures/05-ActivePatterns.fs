@@ -10,12 +10,18 @@ ref: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/active-pa
 
 [<Fact>]
 let ``#5.1, fizzbuzz with active patterns`` () =
-    // TODO: complete the active pattern
-    // Once completed the compiler might be able to infer the Choice<unit,unit,unit,int> part.
-    let (|Fizz|Buzz|FizzBuzz|Number|) (input: int) : Choice<unit, unit, unit, int> = Number input
+    let (|Fizz|Buzz|FizzBuzz|Number|) (input: int) =
+        let isFizz = (input % 3) = 0
+        let isBuzz = (input % 5) = 0
+
+        if isFizz && isBuzz then FizzBuzz
+        elif isFizz then Fizz
+        elif isBuzz then Buzz
+        else Number input
+
     let numbers = [| 1 .. 15 |]
 
-    let processNumber n =
+    let processNumber (n: int) : string =
         // TODO: match the newly created active pattern
         match n with
         | _ -> ""
@@ -24,7 +30,8 @@ let ``#5.1, fizzbuzz with active patterns`` () =
 
     Assert.Equal("fizz", result.[2])
     Assert.Equal("buzz", result.[4])
-    Assert.Equal("6", result.[5])
+    Assert.Equal("7", result.[6])
+    Assert.Equal("fizzbuzz", result.[14])
 
 [<Fact>]
 let ``#5.2, non empty list`` () =

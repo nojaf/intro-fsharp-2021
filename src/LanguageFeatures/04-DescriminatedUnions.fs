@@ -65,8 +65,7 @@ let ``#4.2, delivery date`` () =
     // Tip, you can subtract two Dates in .NET and retrieve a TimeSpan:
     // ref: https://docs.microsoft.com/en-us/dotnet/api/system.datetime.subtract?view=net-5.0
     // https://docs.microsoft.com/en-us/dotnet/api/system.timespan.totaldays?view=net-5.0
-    let getDuration (p: SoftwareDevelopmentPurchase) : int =
-        failwith<int> "TODO" // TODO complete
+    let getDuration (p: SoftwareDevelopmentPurchase) : int = failwith<int> "TODO" // TODO complete
 
     let fixedPriceProject =
         FixedPrice(double (10000.), DateTime(1997, 10, 2), DateTime(1998, 2, 7))
