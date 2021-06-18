@@ -32,7 +32,7 @@ let ``#9.3, money`` () =
     let printCurrency euros = sprintf "€"
 
     Assert.Equal("€0.02", printCurrency 0.02)
-    Assert.Equal("€17.00", printCurrency 17)
+    Assert.Equal("€17.00", printCurrency 17.)
 
 [<Fact>]
 let ``#9.4, print fallback`` () =
