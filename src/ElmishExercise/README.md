@@ -20,6 +20,8 @@ Open http://localhost:8080 to view it in the browser.
 The page will reload if you make edits.
 You will also see any lint errors in the console.
 
+**Note: if you are running this sample outside of GitPod, you need to remove the hmrPort setting in the snowpack.config.js file**
+
 ### npm run build
 
 Builds a static copy of your site to the `build/` folder.
